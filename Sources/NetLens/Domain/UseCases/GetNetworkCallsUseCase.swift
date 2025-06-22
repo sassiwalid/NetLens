@@ -8,5 +8,21 @@
 protocol GetNetworkCallsUseCase: Sendable {
 
     func execute() -> [NetworkCall]
+
+}
+
+final class GetNetworkCallsUseCaseImpl: GetNetworkCallsUseCase, @unchecked Sendable {
+
+    private var networkCallRepository: NetworkCallRepository
+
+    init(networkCallRepository: NetworkCallRepository) {
+
+        self.networkCallRepository = networkCallRepository
+    }
+
+    func execute() -> [NetworkCall] {
+        networkCallRepository.getAllCalls()
+    }
+
 }
 
