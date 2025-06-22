@@ -64,11 +64,11 @@ jobs:
     - name: List available simulators
       run: xcrun simctl list devices available
       
-    - name: Build for iOS 17 Simulator
+    - name: Build for iOS 18 Simulator
       run: |
         xcodebuild build \
           -scheme NetLens \
-          -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' \
+          -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.2' \
           -configuration Debug \
           -showBuildTimingSummary
 
