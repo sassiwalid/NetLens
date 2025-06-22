@@ -7,7 +7,7 @@
 
 protocol GetNetworkCallsUseCase: Sendable {
 
-    func execute() -> [NetworkCall]
+    func execute() async -> [NetworkCall]
 
 }
 
@@ -20,8 +20,8 @@ final class GetNetworkCallsUseCaseImpl: GetNetworkCallsUseCase, @unchecked Senda
         self.networkCallRepository = networkCallRepository
     }
 
-    func execute() -> [NetworkCall] {
-        networkCallRepository.getAllCalls()
+    func execute() async -> [NetworkCall] {
+        await networkCallRepository.getAllCalls()
     }
 
 }

@@ -20,7 +20,7 @@ final class ClearNetworkCallsUseCaseImpl: ClearNetworkCallsUseCase, @unchecked S
     }
 
     func execute() async {
-        networkCallRepository.clearAllCalls()
+        await networkCallRepository.clearAllCalls()
     }
 
 }

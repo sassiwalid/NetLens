@@ -11,9 +11,9 @@ protocol NetworkCallRepository: Sendable {
     
     func addNetworkCall(_ call: NetworkCall) async
 
-    func getAllCalls() -> [NetworkCall]
+    func getAllCalls() async -> [NetworkCall]
 
-    func clearAllCalls()
+    func clearAllCalls() async
     
     func observeCalls() -> AsyncStream<[NetworkCall]>
 }
