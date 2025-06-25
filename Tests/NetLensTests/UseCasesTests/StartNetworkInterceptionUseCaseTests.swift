@@ -39,6 +39,26 @@ struct StartNetworkInterceptionUseCaseTests {
 
         #expect(mockInterceptor.enableCallCount == 1)
     }
+    
+    @Test("Execute should configure callBack to repository")
+    func executeConfiguresCallBackToRepository() async throws {
+        // Given
+        let testCall = NetworkCallFactory.makeSuccessCall()
+        
+        // When
+        await startNetworkInterceptionUseCase.execute()
+        
+        await mockInterceptor.simulateNetworkCallInterception(testCall)
+        
+        // Then
+        
+        let storedCalls = await mockRepository.getAllCalls()
+        
+        #expect(storedCalls.count == 1)
+        
+        #expect(storedCalls[0].id == testCall.id)
+
+    }
 }
 
         
