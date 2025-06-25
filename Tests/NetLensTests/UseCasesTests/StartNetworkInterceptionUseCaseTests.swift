@@ -15,7 +15,7 @@ struct StartNetworkInterceptionUseCaseTests {
     
     private let mockRepository: MockNetworkCallRepository
     
-    private let useCase: StartNetworkInterceptionUseCase
+    private let startNetworkInterceptionUseCase: StartNetworkInterceptionUseCase
     
     init() {
         
@@ -23,7 +23,7 @@ struct StartNetworkInterceptionUseCaseTests {
 
         self.mockRepository = .init()
         
-        useCase = StartNetworkInterceptionUseCaseImpl(
+        startNetworkInterceptionUseCase = StartNetworkInterceptionUseCaseImpl(
             interceptor: mockInterceptor,
             repository: mockRepository
         )
@@ -33,9 +33,10 @@ struct StartNetworkInterceptionUseCaseTests {
     func executeEnablesInterceptor() async throws {
         #expect(!mockInterceptor.isEnabled)
         
-        await useCase.execute()
+        await startNetworkInterceptionUseCase.execute()
         
         #expect(mockInterceptor.isEnabled)
+
         #expect(mockInterceptor.enableCallCount == 1)
     }
 }
