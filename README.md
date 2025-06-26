@@ -37,14 +37,14 @@ NetLens leverages the latest Swift 6 features for optimal performance and safety
 Add NetLens to your project in Xcode:
 
 1. **File** → **Add Package Dependencies**
-2. Enter the repository URL: `https://github.com/your-username/NetLens.git`
+2. Enter the repository URL: `https://github.com/sassiwalid/NetLens.git`
 3. Select the version you want to use
 
 Or add it to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/your-username/NetLens.git", from: "1.0.0")
+    .package(url: "https://github.com/sassiwalid/NetLens.git", from: "1.0.0")
 ]
 ```
 
