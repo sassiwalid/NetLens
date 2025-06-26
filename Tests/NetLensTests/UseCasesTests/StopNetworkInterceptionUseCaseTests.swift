@@ -34,8 +34,22 @@ struct StopNetworkInterceptionUseCaseTests {
         #expect(mockInterceptor.isEnabled == false)
         
         #expect(mockInterceptor.disableCallCount == 1)
+
+    }
+    
+    @Test("Clear CallBack")
+    func executeClearCallBack() {
         
+        mockInterceptor.enable()
         
+        mockInterceptor.onNetworkCallIntercepted = { _ in }
+        
+        #expect(mockInterceptor.onNetworkCallIntercepted != nil )
+        
+        stopNetworkInterceptionUseCase.execute()
+        
+        #expect(mockInterceptor.onNetworkCallIntercepted == nil)
+
     }
 }
 
