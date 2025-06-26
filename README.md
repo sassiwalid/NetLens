@@ -1,6 +1,6 @@
 # NetLens 📡
 
-[![CI](https://github.com/your-username/NetLens/actions/workflows/ci.yml/badge.svg)](https://github.com/your-username/NetLens/actions/workflows/ci.yml)
+[![CI](https://github.com/sassiwalid/NetLens/actions/workflows/ci.yml/badge.svg)](https://github.com/sassiwalid/NetLens/actions/workflows/ci.yml)
 [![Swift 6.0](https://img.shields.io/badge/Swift-6.0-orange.svg)](https://swift.org)
 [![Platforms](https://img.shields.io/badge/Platforms-iOS%2017%2B%20|%20macOS%2014%2B-lightgrey.svg)](https://developer.apple.com)
 [![Swift Testing](https://img.shields.io/badge/Testing-Swift%20Testing-blue.svg)](https://github.com/apple/swift-testing)
