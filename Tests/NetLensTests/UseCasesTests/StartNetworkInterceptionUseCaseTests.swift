@@ -59,6 +59,29 @@ struct StartNetworkInterceptionUseCaseTests {
         #expect(storedCalls[0].id == testCall.id)
 
     }
+    
+    @Test("Should handle multiple calls")
+    func executeConfiguresCallBackToRepositoryMultipleCalls() async throws {
+        let testCalls = NetworkCallFactory.makeMultipleCalls(count: 5)
+        
+        await startNetworkInterceptionUseCase.execute()
+        
+        for call in testCalls {
+
+            await mockInterceptor.simulateNetworkCallInterception(call)
+        }
+        
+        let storedCalls = await mockRepository.getAllCalls()
+        
+        #expect(storedCalls.count == 5)
+        
+        #expect(await mockRepository.addNetworkCallCallCount == 5)
+
+        for (index, call) in testCalls.enumerated() {
+            #expect(storedCalls[index].id == call.id)
+        }
+
+    }
 }
 
         

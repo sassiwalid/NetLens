@@ -41,5 +41,21 @@ class NetworkCallFactory {
             )
         )
     }
+
+    static func makeMultipleCalls(count: Int = 3) -> [NetworkCall] {
+
+        (0..<count).compactMap { index in
+
+            guard let url = URL(string: "https://api.test.com/call\(index)") else {
+                return nil
+            }
+            return NetworkCall(
+                url: url,
+                method: index % 2 == 0 ? .POST : .GET,
+                statusCode: index % 2 == 0 ? 200 : 400,
+                timeStamp: Date().addingTimeInterval(TimeInterval(index))
+            )
+        }
+    }
 }
 
