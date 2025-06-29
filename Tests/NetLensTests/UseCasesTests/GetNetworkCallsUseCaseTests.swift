@@ -33,6 +33,22 @@ struct GetNetworkCallsUseCaseTests {
         
         #expect(await mockNetworkrepository.getAllCallCallCount == 1)
     }
+    
+    @Test("Execute with stored calls should return those calls")
+    func executeWithStoredCallsShouldReturnThoseCalls() async throws {
+        
+        let calls = NetworkCallFactory.makeMultipleCalls(count: 3)
+        
+        await mockNetworkrepository.preloadCalls(calls)
+        
+        let networkCalls = await getNetworkCallsUseCase.execute()
+        
+        #expect(networkCalls.count == 3)
+        
+        #expect(await mockNetworkrepository.getAllCallCallCount == 1)
+        
+        
+    }
 }
 
 

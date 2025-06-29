@@ -60,5 +60,11 @@ final class MockNetworkCallRepository: @preconcurrency NetworkCallRepository, @u
         callsSubject = AsyncStream<[NetworkCall]>.makeStream()
     }
     
+    func preloadCalls(_ calls: [NetworkCall]) {
+        self.calls = calls
+        
+        callsSubject.continuation.yield(calls)
+    }
+    
 }
 
