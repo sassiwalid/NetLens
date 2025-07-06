@@ -24,30 +24,33 @@ struct ObserveNetworkCallsUseCaseSwiftTests {
     }
 
     @Test("Execute return stream from repository")
-    func execureReturnstream() async throws {
+    func executeReturnstream() async throws {
 
-        let call = NetworkCallFactory.makeSuccessCall()
+        let testCall = NetworkCallFactory.makeSuccessCall()
 
         let stream = observeNetworkCallsUseCase.execute()
 
         let streamTask = Task {
-            try await waitForStreamValue(
+            try await waitForStreamCondition(
                 from: stream,
                 timeout: 2.0
-            )
-            
+            ) { calls in
+                !calls.isEmpty
+            }
         }
 
-        await mockNetworkrepository.addNetworkCall(call)
+        try await Task.sleep(for: .milliseconds(50))
+
+        await mockNetworkrepository.addNetworkCall(testCall)
 
         let receivedCalls = try await streamTask.value
 
         #expect(receivedCalls.count == 1)
 
-        #expect(receivedCalls.first?.id == call.id)
-        
+        #expect(receivedCalls.first?.id == testCall.id)
+
     }
-    
-    
+
+
 }
 

@@ -9,8 +9,7 @@ import Foundation
 
 @testable import NetLens
 
-@MainActor
-final class MockNetworkCallRepository: @preconcurrency NetworkCallRepository, @unchecked Sendable {
+final class MockNetworkCallRepository: NetworkCallRepository, @unchecked Sendable {
     
     private(set) var calls: [NetworkCall] = []
     
@@ -49,6 +48,8 @@ final class MockNetworkCallRepository: @preconcurrency NetworkCallRepository, @u
     }
     
     func reset() {
+        callsSubject.continuation.finish()
+
         calls.removeAll()
 
         addNetworkCallCallCount = 0
@@ -56,7 +57,7 @@ final class MockNetworkCallRepository: @preconcurrency NetworkCallRepository, @u
         getAllCallCallCount = 0
 
         clearAllCallsCount = 0
-        
+
         callsSubject = AsyncStream<[NetworkCall]>.makeStream()
     }
     
