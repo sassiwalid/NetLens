@@ -23,14 +23,14 @@ struct StopNetworkInterceptionUseCaseTests {
     }
     
     @Test("Execute disable interception")
-    func executeDisableInterception() {
-        
+    func executeDisableInterception() async {
+
         mockInterceptor.enable()
         
         #expect(mockInterceptor.isEnabled == true)
         
-        stopNetworkInterceptionUseCase.execute()
-        
+        await stopNetworkInterceptionUseCase.execute()
+
         #expect(mockInterceptor.isEnabled == false)
         
         #expect(mockInterceptor.disableCallCount == 1)
@@ -38,15 +38,15 @@ struct StopNetworkInterceptionUseCaseTests {
     }
     
     @Test("Clear CallBack")
-    func executeClearCallBack() {
-        
+    func executeClearCallBack() async {
+
         mockInterceptor.enable()
         
         mockInterceptor.onNetworkCallIntercepted = { _ in }
         
         #expect(mockInterceptor.onNetworkCallIntercepted != nil )
         
-        stopNetworkInterceptionUseCase.execute()
+        await stopNetworkInterceptionUseCase.execute()
         
         #expect(mockInterceptor.onNetworkCallIntercepted == nil)
 

@@ -7,12 +7,12 @@
 
 protocol NetworkInterceptor: Sendable {
 
-    func enable()
-    
-    func disable()
-    
-    var isEnabled: Bool { get }
-    
+    func enable() async
+
+    func disable() async
+
+    var isEnabled: Bool { get async }
+
     var onNetworkCallIntercepted: ((NetworkCall) async -> Void)? { get set }
 }
 

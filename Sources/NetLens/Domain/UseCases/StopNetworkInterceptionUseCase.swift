@@ -7,7 +7,7 @@
 
 protocol StopNetworkInterceptionUseCase: Sendable {
 
-    func execute()
+    func execute() async
 }
 
 final class StopNetworkInterceptionUseCaseImpl: StopNetworkInterceptionUseCase, @unchecked Sendable {
@@ -18,11 +18,11 @@ final class StopNetworkInterceptionUseCaseImpl: StopNetworkInterceptionUseCase, 
         
         self.interceptor = interceptor
     }
-    
-    func execute() {
-        
-        interceptor.disable()
-        
+
+    func execute() async {
+
+        await interceptor.disable()
+
         interceptor.onNetworkCallIntercepted = nil
         
     }

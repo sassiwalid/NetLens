@@ -26,7 +26,7 @@ final class StartNetworkInterceptionUseCaseImpl: StartNetworkInterceptionUseCase
     }
     
     func execute() async {
-        interceptor.enable()
+        await interceptor.enable()
         
         interceptor.onNetworkCallIntercepted = { [repository] call in
             await repository.addNetworkCall(call)
