@@ -11,16 +11,31 @@ actor URLProtocolNetworkInterceptor: @preconcurrency NetworkInterceptor {
 
     private var _isEnabled: Bool = false
 
+    @MainActor
     func enable() async {
-       guard !_isEnabled else { return }
+        guard await !_isEnabled else { return }
 
-        _isEnabled = true
+        URLProtocol.registerClass(NetLensURLProtocol.self)
+
+        NetLensURLProtocol.interceptor = self
+
+        await self.setEnabled(true)
     }
-    
-    func disable() async {
-        guard _isEnabled else { return }
 
-         _isEnabled = false
+    func setEnabled(_ enabled: Bool) {
+        _isEnabled = enabled
+    }
+
+    @MainActor
+    func disable() async {
+
+        guard await self._isEnabled else { return }
+
+        URLProtocol.unregisterClass(NetLensURLProtocol.self)
+
+        NetLensURLProtocol.interceptor = nil
+
+        await self.setEnabled(false)
     }
     
     var isEnabled: Bool {
