@@ -81,7 +81,6 @@ class NetLensURLProtocol: URLProtocol {
                 }
             }
 
-            // Gérer la réponse pour le client
             if let error = error {
                 self.client?.urlProtocol(self, didFailWithError: error)
             } else {
@@ -102,4 +101,5 @@ class NetLensURLProtocol: URLProtocol {
         dataTask?.cancel()
         dataTask = nil
     }
+
 }

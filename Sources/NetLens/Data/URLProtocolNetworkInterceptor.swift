@@ -43,7 +43,6 @@ actor URLProtocolNetworkInterceptor: @preconcurrency NetworkInterceptor {
     }
 
     var onNetworkCallIntercepted: (@Sendable(NetworkCall) async -> Void)?
-    
 
 }
 

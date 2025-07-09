@@ -7,6 +7,7 @@
 import Foundation
 
 extension NetworkCallDTO {
+
     func toDomain() -> NetworkCall? {
         guard let url = URL(string: self.url) else {
             return nil
