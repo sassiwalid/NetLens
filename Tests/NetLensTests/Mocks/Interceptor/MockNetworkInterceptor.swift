@@ -11,8 +11,8 @@ import Foundation
 
 final class MockNetworkInterceptor: NetworkInterceptor, @unchecked Sendable {
 
-    var onNetworkCallIntercepted: ((NetworkCall) async -> Void)?
-    
+    var onNetworkCallIntercepted: (@Sendable(NetworkCall) async -> Void)?
+
     private(set) var isEnabled: Bool = false
     
     private(set) var enableCallCount: Int = 0

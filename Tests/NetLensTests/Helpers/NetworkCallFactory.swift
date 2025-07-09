@@ -35,10 +35,7 @@ class NetworkCallFactory {
             statusCode: statusCode,
             timeStamp: Date(),
             duration: .seconds(1),
-            error: NetworkError(
-                code: statusCode,
-                message: "Not Found"
-            )
+            error: .none
         )
     }
 

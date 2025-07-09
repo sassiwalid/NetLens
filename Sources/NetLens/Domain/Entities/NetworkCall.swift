@@ -99,3 +99,16 @@ extension NetworkCall {
     }
 }
 
+struct NetworkRequest: Sendable {
+    let url: String
+    let method: String
+    let headers: [String: String]
+    let body: Data?
+}
+
+struct NetworkResponse: Sendable {
+    let statusCode: Int
+    let headers: [String: String]
+    let body: Data?
+}
+

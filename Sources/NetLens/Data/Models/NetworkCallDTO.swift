@@ -9,17 +9,22 @@ import Foundation
 
 struct NetworkCallDTO: Sendable {
 
-    let id: UUID
+    let timeStamp: Date
 
-    let request: NetworkRequestDTO
+    let url: String
 
-    let response: NetworkResponseDTO?
+    let method: String
+
+    let headers: [String: String]
+
+    let requestBody: Data?
+
+    let responseBody: Data?
+
+    let statusCode: Int?
+
+    let duration: TimeInterval?
 
     let error: String?
-
-    let timestamp: Date
-
-    let duration: TimeInterval
-
 }
 

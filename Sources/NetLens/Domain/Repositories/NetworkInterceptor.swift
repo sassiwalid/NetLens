@@ -13,6 +13,6 @@ protocol NetworkInterceptor: Sendable {
 
     var isEnabled: Bool { get async }
 
-    var onNetworkCallIntercepted: ((NetworkCall) async -> Void)? { get set }
+    var onNetworkCallIntercepted: (@Sendable(NetworkCall) async -> Void)? { get set }
 }
 
